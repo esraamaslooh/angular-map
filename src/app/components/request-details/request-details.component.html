@@ -1,0 +1,45 @@
+<div class="header">
+  <h3>Request Follow-Up</h3> 
+  <img src="../../../assets/imgs/back-arrow-.svg" alt="" class="arrow-back" (click)="navigateBack()">
+</div>
+<div class="status-bar">
+  <div class="status-step" *ngFor="let step of status; let i = index">
+    <div class="circle" [class.active]="i <= currentStatus">
+      <span>{{ i + 1 }}</span>
+    </div>
+    <div
+      class="line"
+      [class.active]="i < currentStatus"
+      *ngIf="i < status.length - 1"
+    ></div>
+    <div class="label" [class.active]="i <= currentStatus">
+      {{ step }}
+    </div>
+  </div>
+</div>
+
+<div class="provider-info">
+  <div class="provider-details">
+    <img [src]="provider.photo" alt="{{ provider.name }}" class="provider-photo" />
+    <div>
+      <h4>{{ provider.name }}</h4>
+      <p class="rating">
+        <span *ngFor="let star of [].constructor(provider.rating)">★</span>
+      </p>
+    </div>
+  </div>
+  <div class="provider-actions">
+    <button (click)="navigateBack()" class="cancel">Cancel</button>
+    <button (click)="callProvider()" class="call">Call</button>
+  </div>
+</div>
+
+
+<div class="google-map-container">
+  <google-map [center]="center" [zoom]="15">
+    <map-marker
+      [position]="providerLocation"
+      [icon]="markerIcon"
+    ></map-marker>
+  </google-map>
+</div>

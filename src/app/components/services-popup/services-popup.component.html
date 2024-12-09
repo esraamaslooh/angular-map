@@ -1,0 +1,25 @@
+<div class="popup-container">
+  <h2>Select a Service</h2>
+  <ul>
+    @for(service of data.services; track service){
+      <li
+        [class.selected]="selectedService === service"
+        (click)="selectService(service)"
+      >
+        {{ service }}
+      </li>
+    }
+
+  </ul>
+  <div class="popup-buttons">
+    <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
+    <button
+      mat-button
+      color="primary"
+      [disabled]="!selectedService"
+      (click)="confirmSelection()"
+    >
+      Confirm
+    </button>
+  </div>
+</div>
